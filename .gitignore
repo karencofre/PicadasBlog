@@ -1,0 +1,33 @@
+# Entorno virtual
+venv/
+env/
+
+# Archivos y directorios de Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+
+# Configuración de Jupyter Notebook
+.ipynb_checkpoints/
+
+# Directorios y archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración del IDE/editor
+.vscode/
+.idea/
+*.swp
+*.s
