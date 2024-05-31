@@ -1,9 +1,42 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 50px;
-}
-
-h1 {
-    color: #333;
-}
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .flexbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+  .box {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+  iframe {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  
+  a img {
+    object-fit: cover;
+  }
+  
+  .menu {
+    list-style: none;
+    text-decoration: none;
+    color: #121212;
+  }
+  .menu li,
+  .menu li a {
+    margin: 0 10px;
+    list-style: none;
+    text-decoration: none;
+    color: #121212;
+  }
