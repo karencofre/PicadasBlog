@@ -14,18 +14,27 @@
         <nav class="navbar bg-body-tertiary" id="primary-menu">
             <div class="container">
             <a class="navbar-brand menu" href="http://karenpicadas.local/">
-                <img src="/logo.png" alt="logo" width="100%" height="24" />
+                <img class="img-fluid w-25" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" width="100%" height="24" />
             </a>
                 <ul class="nav">
                     <li class="nav-item">
-                    <a class="nav-link" href="http://karenpicadas.local/">Inicio</a>
+                    <a  class="nav-link" href="{{ url_for('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="http://karenpicadas.local/menu/">Menú</a>
+                    <a  class="nav-link" href="{{ url_for('detail') }}">Picadas</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="http://karenpicadas.local/contacto/">Contacto</a>
+                    <a class="nav-link" href="{{ url_for('login') }}">Iniciar Sesión</a>
                     </li>
+                        {% if session.get('logged_in') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Cerrar Sesión</a>
+                </li>
+                 <li class="nav-item">
+                    <a  class="nav-link" href="{{ url_for('admin') }}">Admin</a>
+                    </li>
+                {% endif %}
+                   
             </div>
         </nav>
     </header>

@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block title %}Página Específica - {{ super() }}{%
+endblock %} {% block extra_head %}
+
+<script>
+  function miFuncion(parametro) {
+    var nuevoSrc =
+      "https://www.google.com/maps/embed/v1/place?key=AIzaSyCRQYroByGlKp-fOR4AXwVhbkMdHFTbCR8&q=" +
+      parametro;
+    document.getElementById("mapa").src = nuevoSrc;
+  }
+</script>
+{% endblock %} {% block content %}
+<div class="flexbox">
+  <div class="box">
+    <div class="post container">
+      <div class="row">
+        {% for post in posts %}
+        <div class="col my-4 mx-4">
+          <article class="card" style="width: 18rem">
+            <div class="card-body">
+              <header class="entry-header">
+                <h5 class="card-title entry-title">
+                  <a href="#">{{ post.title }}</a>
+                </h5>
+              </header>
+              <p class="card-text entry-content">{{ post.excerpt }}</p>
+              <a
+                href="#"
+                onclick="miFuncion('Komo Plaza, Seattle WA')"
+                class="btn btn-primary"
+                >View Site</a
+              >
+            </div>
+          </article>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="box">
+      <iframe
+        id="mapa"
+        width="100%"
+        height="400"
+        style="border: 0"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCRQYroByGlKp-fOR4AXwVhbkMdHFTbCR8&q=Space+Needle,Seattle+WA"
+      ></iframe>
+    </div>
+  </div>
+</div>
+{% endblock %}
