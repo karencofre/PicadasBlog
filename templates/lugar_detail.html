@@ -1,13 +1,23 @@
-{% extends 'base.html' %} {% block title %}Página Específica - {{ super() }}{%
+{% extends 'base.html' %} {% block title %} Página Específica - {{ super() }} {%
 endblock %} {% block extra_head %}
-
 <script>
-  function miFuncion(parametro) {
+  function updateMap(address) {
     var nuevoSrc =
       "https://www.google.com/maps/embed/v1/place?key=AIzaSyCRQYroByGlKp-fOR4AXwVhbkMdHFTbCR8&q=" +
-      parametro;
+      encodeURIComponent(address);
     document.getElementById("mapa").src = nuevoSrc;
   }
+
+  function setMapForFirstPost() {
+    var firstPostAddress = document
+      .getElementById("mapa")
+      .getAttribute("data-address");
+    if (firstPostAddress) {
+      updateMap(firstPostAddress);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", setMapForFirstPost);
 </script>
 {% endblock %} {% block content %}
 <div class="flexbox">
@@ -26,7 +36,7 @@ endblock %} {% block extra_head %}
               <p class="card-text entry-content">{{ post.excerpt }}</p>
               <a
                 href="#"
-                onclick="miFuncion('Komo Plaza, Seattle WA')"
+                onclick="updateMap('{{ post.address }}')"
                 class="btn btn-primary"
                 >View Site</a
               >
@@ -47,6 +57,7 @@ endblock %} {% block extra_head %}
         allowfullscreen
         referrerpolicy="no-referrer-when-downgrade"
         src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCRQYroByGlKp-fOR4AXwVhbkMdHFTbCR8&q=Space+Needle,Seattle+WA"
+        data-address="{{ posts[0].address if posts else '' }}"
       ></iframe>
     </div>
   </div>

@@ -91,15 +91,9 @@ def index():
 
 @app.route('/picadas')
 def detail():
-    # Simulando el query personalizado para obtener publicaciones de la categoría "picadas"
-    custom_query_result = [
-        {"title": "Título de la Publicación 1", "excerpt": "Extracto de la publicación 1"},
-        {"title": "Título de la Publicación 2", "excerpt": "Extracto de la publicación 2"},
-        {"title": "Título de la Publicación 3", "excerpt": "Extracto de la publicación 3"},
-        {"title": "Título de la Publicación 4", "excerpt": "Extracto de la publicación 4"}
-    ]
-    return render_template('lugar_detail.html', posts=custom_query_result)
-
+    db = get_db()
+    posts = db.execute('SELECT * FROM posts').fetchall()
+    return render_template('lugar_detail.html', posts=posts)
 
 
 @app.route('/delete/<int:id>', methods=['POST'])
