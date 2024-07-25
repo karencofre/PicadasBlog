@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block title %}Página Específica - {{ super() }}{%
+{% extends 'base.html' %} {% block title %} Página Específica - {{ super() }} {%
 endblock %} {% block extra_head %} {% endblock %} {% block content %}
 <div class="container mt-5">
   <h1 class="text-center">Administración de Publicaciones de Picadas</h1>
@@ -15,6 +15,16 @@ endblock %} {% block extra_head %} {% endblock %} {% block content %}
       />
     </div>
     <div class="form-group">
+      <label for="address">Dirección</label>
+      <input
+        type="text"
+        class="form-control my-3"
+        id="address"
+        name="address"
+        required
+      />
+    </div>
+    <div class="form-group">
       <label for="excerpt">Extracto</label>
       <textarea
         class="form-control my-3"
@@ -27,25 +37,23 @@ endblock %} {% block extra_head %} {% endblock %} {% block content %}
     <button type="submit" class="btn btn-primary">Agregar Publicación</button>
   </form>
 
-  <h2 class="text-center">Publicaciones Existentes</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Título</th>
-        <th scope="col">Extracto</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for index, item in custom_query_result %}
-      <tr>
-        <th scope="row">{{ index }}</th>
-        <td>{{ item.title }}</td>
-        <td>{{ item.excerpt }}</td>
-        <!--excerpt == direccion-->
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <h1>Lista de Publicaciones</h1>
+  <ul>
+    {% for post in posts %}
+    <li>
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.address }}</p>
+      <p>{{ post.excerpt }}</p>
+      <a href="{{ url_for('edit', id=post.id) }}">Editar</a>
+      <form
+        action="{{ url_for('delete', id=post.id) }}"
+        method="POST"
+        style="display: inline"
+      >
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
 </div>
 {% endblock %}

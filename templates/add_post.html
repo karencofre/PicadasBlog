@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% block title %}Página Específica - {{ super() }}{%
+endblock %} {% block extra_head %} {% endblock %} {% block content %}
+<h1>Agregar Publicación</h1>
+<form method="POST" action="/admin" class="mb-5">
+  <div class="form-group">
+    <label for="title">Título</label>
+    <input
+      type="text"
+      class="form-control my-3"
+      id="title"
+      name="title"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="address">Dirección</label>
+    <input
+      type="text"
+      class="form-control my-3"
+      id="address"
+      name="address"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="excerpt">Extracto</label>
+    <textarea
+      class="form-control my-3"
+      id="excerpt"
+      name="excerpt"
+      rows="3"
+      required
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Agregar Publicación</button>
+</form>
+<h1>Lista de Publicaciones</h1>
+<a href="{{ url_for('admin') }}">Agregar Publicación</a>
+<ul>
+  {% for post in posts %}
+  <li>
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.address }}</p>
+    <p>{{ post.excerpt }}</p>
+    <a href="{{ url_for('edit', id=post.id) }}">Editar</a>
+    <form
+      action="{{ url_for('delete', id=post.id) }}"
+      method="POST"
+      style="display: inline"
+    >
+      <button type="submit">Eliminar</button>
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

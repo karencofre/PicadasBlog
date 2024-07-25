@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block title %}Página Específica - {{ super() }}{%
+endblock %} {% block extra_head %} {% endblock %} {% block content %}
+<h1>Editar Publicación</h1>
+<form method="POST" action="/edit/{{ post.id }}" class="mb-5">
+  <div class="form-group">
+    <label for="title">Título</label>
+    <input
+      type="text"
+      class="form-control my-3"
+      id="title"
+      name="title"
+      value="{{ post.title }}"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="address">Dirección</label>
+    <input
+      type="text"
+      class="form-control my-3"
+      id="address"
+      name="address"
+      value="{{ post.address }}"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="excerpt">Extracto</label>
+    <textarea
+      class="form-control my-3"
+      id="excerpt"
+      name="excerpt"
+      rows="3"
+      required
+    >
+{{ post.excerpt }}</textarea
+    >
+  </div>
+  <button type="submit" class="btn btn-primary">Actualizar Publicación</button>
+</form>
+
+{% endblock %}
